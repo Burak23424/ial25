@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Burak Can'dan Selamlar</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: black;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('ispir_anadolu_lisesi.jpg') no-repeat center center fixed;
+      background-size: cover;
+      z-index: 1;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .stars div {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 4em;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+      border: 4px solid #00fff7;
+      padding: 30px 60px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      animation: popIn 1s ease-out 1s forwards, glow 2s infinite alternate;
+      z-index: 3;
+      display: none;
+    }
+
+    @keyframes popIn {
+      to { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #00fff7; }
+      to { text-shadow: 0 0 30px #fff, 0 0 50px #00fff7; }
+    }
+
+    .start-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      padding: 20px 40px;
+      font-size: 2em;
+      color: white;
+      background: rgba(0, 0, 0, 0.7);
+      border: 3px solid #00fff7;
+      border-radius: 15px;
+      cursor: pointer;
+      text-shadow: 0 0 10px #00fff7;
+      animation: glow 2s infinite alternate;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="stars" id="stars"></div>
+
+  <div class="start-button" onclick="startSite()">🚀 Siteye Giriş</div>
+
+  <div class="message" id="message">
+    🚀 İAL Öğrencisi Burak Can'dan SELAMLAR! 🚀
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="giris-muzigi.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Yıldızlar
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 150; i++) {
+      let star = document.createElement('div');
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = 2 + Math.random() * 3 + 's';
+      star.style.opacity = Math.random();
+      starsContainer.appendChild(star);
+    }
+
+    // Giriş fonksiyonu
+    function startSite() {
+      document.querySelector('.start-button').style.display = 'none';
+      document.getElementById('message').style.display = 'block';
+      document.getElementById('bgMusic').play();
+    }
+  </script>
+</body>
+</html>
